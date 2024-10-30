@@ -1,24 +1,12 @@
-# live/dev/eks/terragrunt.hcl
+## terragrunt.hcl
 terraform {
-  source = "../../modules/eks"
-}
-
-include {
-  path = find_in_parent_folders()
+  source = "git::https://github.com/0307-ai/.T//modules/eks?ref=<main.tf>"
 }
 
 inputs = {
-  region          = "us-west-2"
-  cluster_name    = "dev-eks-cluster"
-  cluster_version = "1.21"
-  subnets         = ["subnet-12345", "subnet-67890"]
-  vpc_id          = "vpc-12345678"
-  node_groups     = {
-    example = {
-      desired_capacity = 2
-      max_size         = 3
-      min_size         = 1
-      instance_type    = "t2.medium"
-    }
-  }
+  cluster_name  = "kavi"
+  region        = "us-west-2"  # or your preferred region
+  vpc_id        = "vpc-vpc-04d09cfa7d53afca3 "
+  subnet_ids    = ["subnet-066b7cfe710a84837", "subnet-0d0aa8dcc94f77fc9", "subnet-09cfb1740a1acb1c8"]
+  # Add other necessary variables
 }
